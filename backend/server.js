@@ -7,6 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root path health check
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'healthy', service: 'Recover AI Graph Orchestrator' });
+});
+
 // Establish persistent Bolt connection to Aura Free Tier securely
 const driver = neo4j.driver(
   process.env.NEO4J_URI,
